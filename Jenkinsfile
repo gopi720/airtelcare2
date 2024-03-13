@@ -16,13 +16,12 @@ pipeline{
         }
         stage("terraform install"){
             steps{
-                sh '''sudo chmod 600 installations.sh
-                sh installations.sh'''
+                sh 'sh installations.sh'
             }
         }
         stage("awscli installaton"){
             steps{
-                sh 'sudo apt install -y awscli'
+                sh 'apt install -y awscli'
             }
         }
     }
