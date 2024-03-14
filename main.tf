@@ -10,13 +10,6 @@ provider "aws" {
     access_key = var.accesskey
     secret_key = var.secretkey     
 }
-terraform {
-  backend "s3" {
-    bucket = "anitha-tsubbucket"
-    key    = "terraform.tfstate"
-    region = "ap-south-1"
-  }
-}
 data "aws_ami" "tsubami" {
   most_recent = true
   filter {
