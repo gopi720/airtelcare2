@@ -71,7 +71,7 @@ resource "aws_security_group" "tsubsg" {
   }
 }
 resource "aws_key_pair" "tsubkeypair" {
-  key_name = "tsubkey"
+  key_name = "gopi"
   public_key = var.keypair
 }
 resource "aws_instance" "tsubec2" {
