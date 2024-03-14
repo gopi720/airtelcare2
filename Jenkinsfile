@@ -2,6 +2,7 @@ pipeline{
     agent any
     tools{
         maven "maven"
+        terraform "Terraform"
     }
     stages{
         stage("git clone"){
@@ -14,15 +15,16 @@ pipeline{
                 sh 'mvn clean verify'
             }
         }
-        stage("terraform install"){
+        stage("terraform"){
             steps{
-                sh 'sh installations.sh'
-            }
-        }
-        stage("awscli installaton"){
-            steps{
-                sh 'apt install -y awscli'
-            }
+                script{
+                    withCredentials([string(credentialsId: 'accesskey', variable: 'accesskey'), string(credentialsId: 'secretkey', variable: 'secretkey')]) {
+                     sh '''terraform init
+                     terraform plan -var accesskey=${accesskey} -var secretkey=${secretkey} --auto-approve
+                     terraform apply -var accesskey=${accesskey} -var secretkey=${secretkey} --auto-approve'''
+                    }
+                }
+            }  
         }
     }
 }
