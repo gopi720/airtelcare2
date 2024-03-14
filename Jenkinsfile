@@ -19,11 +19,12 @@ pipeline{
         }
         stage("terraform"){
             steps{
+                sh 'terraform init'
                 script{
                     withCredentials([string(credentialsId: 'accesskey', variable: 'accesskey'), string(credentialsId: 'secretkey', variable: 'secretkey')]) {
-                     sh '''terraform init
-                     terraform plan -var accesskey=${accesskey} -var secretkey=${secretkey} --auto-approve
-                     terraform apply -var accesskey=${accesskey} -var secretkey=${secretkey} --auto-approve'''
+                     
+                      terraform plan -var accesskey=${accesskey} -var secretkey=${secretkey} --auto-approve
+                      terraform apply -var accesskey=${accesskey} -var secretkey=${secretkey} --auto-approve
                     }
                 }
             }  
