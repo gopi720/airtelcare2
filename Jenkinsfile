@@ -1,5 +1,7 @@
 pipeline{
-    agent any
+    agent {
+        label 'node2'
+    }
     tools{
         maven "maven"
         terraform "Terraform"
