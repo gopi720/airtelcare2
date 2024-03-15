@@ -1,0 +1,32 @@
+- name: airtelcare-deployment
+  hosts: all
+  tasks:
+  - name: jdk-installation
+    apt:
+     name: openjdk-11-jdk
+     state: present 
+     update_cache: yes
+    become: true 
+  - name: tomcat-installation
+    get_url: 
+     url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.87/bin/apache-tomcat-9.0.87.tar.gz
+     dest: /home/ubuntu
+    become: true 
+  - name: unarchiving-tomcat
+    unarchive:
+     src: /home/ubuntu/apache-tomcat-9.0.87.tar.gz
+     dest: /home/ubuntu
+     remote_src: yes
+  - name: deleting-tarfile
+    file:
+     path: /home/ubuntu/apache-tomcat-9.0.87.tar.gz
+     state: absent
+     remote_src: yes
+  - name: copying-warfileto-srclocation
+    copy:
+     src: target/airtelcare2.war
+     dest: /home/ubuntu/apache-tomcat-9.0.87/webapps
+  - name: starting-tomcat
+    command: sh apache-tomcat-9.0.87/bin/startup.sh
+       
+           
