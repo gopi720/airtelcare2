@@ -73,8 +73,8 @@ pipeline{
                 script{
                     withCredentials(string(credentialsId: 'privatekey', variable: 'privatekey')) {
                        ansiblePlaybook 
-                                    inventory: 'host', // Path to your inventory file
-                                    playbook: 'playbook.yml', // Path to your playbook
+                                    inventory: host, // Path to your inventory file
+                                    playbook: playbook.yml, // Path to your playbook
                                     extraVars: [
                                         ansible_private_key: '${privatekey}', // Define variables here
                                         ansible_user: 'ubuntu'
