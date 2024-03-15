@@ -72,7 +72,7 @@ pipeline{
             }
             steps{
                 script{
-                    ansiblePlaybook credentialsId: 'ansible-ssh-key', installation: 'ansible', inventory: 'host', playbook: 'playbook.yml'
+                    ansiblePlaybook credentialsId: 'ansible-ssh-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'host', playbook: 'playbook.yml'
                 }
             }
             
