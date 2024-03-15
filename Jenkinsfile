@@ -3,6 +3,7 @@ pipeline{
     tools{
         maven "maven"
         terraform "Terraform"
+        ansible "ansible"
     }
     parameters {
         choice(
