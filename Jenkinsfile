@@ -64,6 +64,16 @@ pipeline{
                 } 
             }
         }
+        stage("printing msg"){
+            when {
+                expression {
+                    params.SELECT == 'create' 
+                }
+            }
+            steps{
+                sh 'echo "ec2 successfull created"'
+            }
+        }
         stage("playbookrun"){
             when {
                 expression {
