@@ -83,6 +83,9 @@ resource "aws_instance" "tsubec2" {
   availability_zone = "ap-south-1a"
   associate_public_ip_address = true
   provisioner "local-exec" {
-    command = "echo ${self.public_ip} >> host"
+    command = <<EOT
+    rm host
+    echo ${self.public_ip} >> host
+    EOT
   }
 }
