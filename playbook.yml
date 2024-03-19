@@ -32,8 +32,8 @@
      dest: /etc/systemd/system/tomcat.service
     become: true 
   - name: starting tomcat service 
-    systemd_service: 
-     name: tomcat  
+    systemd: 
+     name: tomcat.service  
      state: started
      daemon_reload: true
 
