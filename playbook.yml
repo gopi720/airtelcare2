@@ -36,4 +36,5 @@
      name: tomcat.service  
      state: started
      daemon_reload: true
+    become: true 
 
