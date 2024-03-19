@@ -1,0 +1,14 @@
+[Unit]
+Description=Tomcat - instance %i
+After=syslog.target network.target
+
+[Service]
+Type=forking
+Environment="JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64"
+Environment="CATALINA_HOME=/home/ubuntu/apache-tomcat-9.0.87/"
+Environment="CATALINA_BASE=/home/ubuntu/apache-tomcat-9.0.87"
+ExecStart=/home/ubuntu/apache-tomcat-9.0.87/bin/startup.sh 
+ExecStop=/home/ubuntu/apache-tomcat-9.0.87/bin/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target

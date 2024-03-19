@@ -26,7 +26,14 @@
     copy:
      src: target/airtelcare2.war
      dest: /home/ubuntu/apache-tomcat-9.0.87/webapps
-  - name: starting-tomcat
-    command: sh apache-tomcat-9.0.87/bin/startup.sh
-       
-           
+  - name: copying service file
+    template:
+     src: tomcat_service.j2
+     dest: /etc/systemd/system/tomcat.service
+    become: true 
+  - name: starting tomcat service 
+    systemd_service: 
+     name: tomcat  
+     state: started
+     daemon_reload: true
+
