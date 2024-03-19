@@ -26,9 +26,10 @@ public class NewDTHRequestServlet extends HttpServlet {
     req.setAttribute("connectionType", connectionType);
     req.setAttribute("refNo", refNo);
 
-    resp.setAttribute("name", name);
-    resp.setAttribute("connectionType", connectionType);
-    resp.setAttribute("refNo", refNo);
+
+    // resp.setAttribute("name", name);
+    // resp.setAttribute("connectionType", connectionType);
+    // resp.setAttribute("refNo", refNo);
     
     req.getRequestDispatcher("/request-details.jsp").forward(req, resp);        
   }
